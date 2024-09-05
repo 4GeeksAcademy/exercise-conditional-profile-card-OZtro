@@ -29,18 +29,56 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
-  // reset the website body with the new html output
+  //modifica nombre y apellido//
+  let fullName = "";
+  if (!variables.name) fullName += "Your Name" + " ";
+  else fullName += variables.name + " ";
+  if (!variables.lastName) fullName += "Your Lastname";
+  else fullName += variables.lastName + " ";
+
+  //sitios de redes//
+
+  let twitter = "";
+  if (!variables.twitter) twitter += variables.twitter;
+  let instagram = "";
+  if (!variables.instagram) instagram += variables.instagram;
+  let linkedin = "";
+  if (!variables.linkedin) linkedin += variables.linkedin;
+  let github = "";
+  if (!variables.github) github += variables.github;
+
+  //Profesion//
+
+  let role = "";
+  if (variables.role) role = variables.role;
+
+  //ciudad//
+
+  let city = "";
+  if (variables.city) city = variables.city;
+
+  //pais//
+
+  let country = "";
+  if (variables.country) country += variables.country;
+
+  //foto de perfil//
+
+  let photoUser = "";
+  if (variables.avatarURL)
+    photoUser = "https://avatars.githubusercontent.com/u/174281630?v=4";
+
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
-          <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/school/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <img src="${photoUser}" class="photo" />
+          <h1>${fullName}</h1>
+          <h2>${role}</h2>
+          <h3>${city}, ${country}</h3>
+          <ul class="${variables.socialMediaPosition}">
+            <li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/in/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
